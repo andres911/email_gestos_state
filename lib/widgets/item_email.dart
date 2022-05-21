@@ -15,7 +15,7 @@ class _ItemEmailState extends State<ItemEmail> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 150,
+      height: 200,
       //color: leido ? Colors.white : Colors.blue,
       child: Card(
         color: _leido ? Colors.white : Colors.grey[350],
@@ -33,42 +33,54 @@ class _ItemEmailState extends State<ItemEmail> {
               _leido = true;
             });
           },
-          child: Column(
+          child: Row(
             children: [
               Padding(
-                padding: const EdgeInsets.fromLTRB(0, 10, 80, 0),
-                child: Column(
-                  children: [
-                    Text(
-                      widget.email.dateTime.toString(),
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300),
+                padding: const EdgeInsets.all(25.0),
+                child: Icon(
+                  _leido ? Icons.mark_email_read: Icons.mail,
+                  size: 20
+                ),
+              ),
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+                    child: Column(
+                      children: [
+                        Text(
+                          widget.email.dateTime.toString(),
+                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300),
+                        ),     
+                      ],
                     ),
-                    
-                  ],
-                ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                    child: Column(
+                      children: [
+                        Text(
+                          widget.email.from,
+                          style: _leido ? TextStyle(fontSize: 20,) : TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                        )
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                    child: Column(
+                      children: [
+                        Text(
+                          widget.email.subject,
+                          style: TextStyle(fontSize: 20),
+                        )
+                      ],
+                    ),
+                  )
+                ],
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 10, 80, 0),
-                child: Column(
-                  children: [
-                    Text(
-                      widget.email.from,
-                      style: _leido ? TextStyle(fontSize: 20, fontWeight: FontWeight.bold) : TextStyle(fontSize: 20, ),
-                    )
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 10, 80, 0),
-                child: Column(
-                  children: [
-                    Text(
-                      widget.email.subject,
-                      style: TextStyle(fontSize: 20),
-                    )
-                  ],
-                ),
-              )
             ],
           ),
         ),
